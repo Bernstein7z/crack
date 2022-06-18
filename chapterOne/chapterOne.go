@@ -10,7 +10,7 @@ func IsUnique(input string) bool {
 
 	for i := 0; i < length; i++ {
 		sb.WriteByte(input[i])
-		if strings.Count(input[i:], sb.String()) > 1 {
+		if strings.Count(input[i+1:], sb.String()) == 1 {
 			return false
 		}
 		sb.Reset()
