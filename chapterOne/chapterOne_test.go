@@ -1,6 +1,8 @@
 package chapterOne
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestIsUnique(t *testing.T) {
 	type testCandidates struct {
@@ -17,8 +19,9 @@ func TestIsUnique(t *testing.T) {
 		{"12345678902", false},
 	}
 
+	var output bool
 	for _, candidate := range candidates {
-		output := IsUnique(candidate.input)
+		output = IsUnique(candidate.input)
 		if output != candidate.result {
 			t.Errorf("Output %v not equal to expected %v", candidate.input, candidate.result)
 		}
@@ -27,9 +30,8 @@ func TestIsUnique(t *testing.T) {
 
 func TestCheckPermutation(t *testing.T) {
 	type testCandidates struct {
-		str1   string
-		str2   string
-		result bool
+		str1, str2 string
+		result     bool
 	}
 
 	candidates := []testCandidates{
@@ -41,10 +43,29 @@ func TestCheckPermutation(t *testing.T) {
 		{"aab", "aba", true},
 	}
 
+	var output bool
 	for _, candidate := range candidates {
-		output := CheckPermutation(candidate.str1, candidate.str2)
+		output = CheckPermutation(candidate.str1, candidate.str2)
 		if output != candidate.result {
 			t.Errorf("Output from %v and %v not equal to expected %v", candidate.str1, candidate.str2, candidate.result)
+		}
+	}
+}
+
+func TestURLify(t *testing.T) {
+	type testCandidate struct {
+		raw, formatted string
+	}
+
+	candidates := []testCandidate{
+		{"Mr John Smith      ", "Mr%20John%20Smith"},
+	}
+
+	var output string
+	for _, candidate := range candidates {
+		output = URLify(candidate.raw)
+		if output != candidate.formatted {
+			t.Errorf("output for %v is %v.\nExpected: %v", candidate.raw, output, candidate.formatted)
 		}
 	}
 }

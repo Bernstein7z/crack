@@ -22,13 +22,8 @@ func IsUnique(input string) bool {
 
 // CheckPermutation decides if one of the two given strings is a permutation of the other.
 func CheckPermutation(str1, str2 string) bool {
-	// Check if both strings have the same length
-	if len(str1) != len(str2) {
-		return false
-	}
-
-	// Check if both strings are equal
-	if strings.Compare(str1, str2) == 0 {
+	// Check if both strings have the same length or equal
+	if len(str1) != len(str2) || str1 == str2 {
 		return false
 	}
 
@@ -45,4 +40,8 @@ func CheckPermutation(str1, str2 string) bool {
 	}
 
 	return true
+}
+
+func URLify(rawURL string) string {
+	return ""
 }
