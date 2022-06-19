@@ -59,6 +59,9 @@ func TestURLify(t *testing.T) {
 
 	candidates := []testCandidate{
 		{"Mr John Smith      ", "Mr%20John%20Smith"},
+		{"", ""},
+		{" Aln", "Aln"},
+		{" 23 do 23", "23%20do%2023"},
 	}
 
 	var output string

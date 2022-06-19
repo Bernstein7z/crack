@@ -42,6 +42,7 @@ func CheckPermutation(str1, str2 string) bool {
 	return true
 }
 
+// URLify replaces all spaces in a string with %20.
 func URLify(rawURL string) string {
-	return ""
+	return strings.ReplaceAll(strings.Trim(rawURL, " "), " ", "%20")
 }
