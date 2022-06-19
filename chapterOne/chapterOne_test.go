@@ -34,10 +34,15 @@ func TestCheckPermutation(t *testing.T) {
 
 	candidates := []testCandidates{
 		{"aba", "baa", true},
+		{"aba", "abaa", false},
+		{"abc", "abd", false},
+		{"", "", false},
+		{"1234", "4321", true},
+		{"aab", "aba", true},
 	}
 
 	for _, candidate := range candidates {
-		output := CheckPermutation(candidate.str1, candidate.str1)
+		output := CheckPermutation(candidate.str1, candidate.str2)
 		if output != candidate.result {
 			t.Errorf("Output from %v and %v not equal to expected %v", candidate.str1, candidate.str2, candidate.result)
 		}
