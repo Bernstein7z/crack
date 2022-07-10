@@ -46,3 +46,43 @@ func CheckPermutation(str1, str2 string) bool {
 func URLify(rawURL string) string {
 	return strings.ReplaceAll(strings.Trim(rawURL, " "), " ", "%20")
 }
+
+// CheckPalindromePermutation checks if the input string is a permutation of his palindrome.
+// White spaces and lower/upper cases are ignored.
+func CheckPalindromePermutation(input string) bool {
+	input = strings.ReplaceAll(strings.ToLower(input), " ", "")
+	length := len(input)
+	if length == 0 {
+		return true
+	}
+
+	chars := make(map[rune]rune)
+	for _, char := range input {
+		chars[char]++
+	}
+
+	switch {
+	case length%2 == 0:
+		if len(chars) >= length/2 {
+			return false
+		}
+		for _, value := range chars {
+			if value%2 != 0 {
+				return false
+			}
+		}
+		return true
+	default:
+		oddDetected := false
+		for _, value := range chars {
+			if value%2 != 0 {
+				if oddDetected {
+					return false
+				} else {
+					oddDetected = true
+				}
+			}
+		}
+		return true
+	}
+}

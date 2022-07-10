@@ -72,3 +72,30 @@ func TestURLify(t *testing.T) {
 		}
 	}
 }
+
+func TestCheckPalindromePermutation(t *testing.T) {
+	type testCandidate struct {
+		input  string
+		result bool
+	}
+
+	candidates := []testCandidate{
+		{"abbbba", true},
+		{"abbbab", true},
+		{"abbbbbaa", false},
+		{"abcbcb", false},
+		{"abcab", true},
+		{"abcabab", false},
+		{"abcabaabb", true},
+		{"0001000", true},
+		{"Tact Coa", true},
+	}
+
+	var output bool
+	for _, candidate := range candidates {
+		output = CheckPalindromePermutation(candidate.input)
+		if output != candidate.result {
+			t.Errorf("output for %v is %v.\nExpected: %v", candidate.input, output, candidate.result)
+		}
+	}
+}
